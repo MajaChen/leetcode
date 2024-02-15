@@ -1,44 +1,55 @@
 package org.leetcode;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.Stack;
+
+class Node implements Comparable<Node>{
+    int x;
+    int y;
+    int v;
+    
+    Node(int x, int y, int v) {
+        this.x = x;
+        this.y = y;
+        this.v = v;
+    }
+    
+    public int compare(Node n1, Node n2) {
+        return n1.y != n2.y ? n1.y - n2.y : n1.x != n2.x ? n1.x - n2.x : n1.v - n2.v;
+    }
+    
+    @Override
+    public int compareTo(Node o) {
+        return y != o.y ? y - o.y : x != o.x ? x - o.x : v - o.v;
+    }
+}
+
 
 public class Main {
     
-    Map<Integer, Integer> mappings = new HashMap<>();
-    
-    private int traverse(int num) {
-        if (mappings.containsKey(num)) {
-            return mappings.get(num);
-        }
-        
-        int k = (int) Math.sqrt((double) num);
-        int m = Integer.MAX_VALUE;
-        for (int i = k; i >= 1; i--) {
-            int j = num - (int)Math.pow((double)i, 2D);
-            int n = traverse(j);
-            if (n < m) {
-                m = n;
+    private boolean canShip(int[] weights, int days, int capacity) {
+        int counter = 0;
+        for (int i = 0; i < weights.length; ) {
+            int j = i;
+            int sum = 0;
+            while(j < weights.length && sum+weights[j] <= capacity) {
+                sum += weights[j];
+                j++;
             }
+            counter += 1;
+            i = j;
         }
         
-        mappings.put(num, m+1);
-        return mappings.get(num);
+        return counter <= days;
     }
     
     public static void main(String[] args) {
-        Main main = new Main();
-        main.mappings.put(0, 0);
-        int i = main.traverse(3);
-        System.out.println(i);
+        Main m = new Main();
+        m.canShip(new int[]{1,2,3,4,5,6,7,8,9,10}, 5, 15);
+       
+       
     }
 }
