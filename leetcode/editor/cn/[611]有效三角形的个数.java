@@ -38,12 +38,12 @@ class Solution {
         int ans = 0;
         int n = nums.length;
         for (int i = 0; i < n-2; i++) {
+            int k = i+2;// k 从这个位置开始
             for (int j = i+1; j < n-1; j++) {
-                int k = i+2;
-                while(nums[k] == 0 || nums[i] + nums[j] <= nums[k]) {
+                while(k < nums.length && nums[i] + nums[j] > nums[k]) {
                     k++;
                 }
-                ans += k - j + 1;
+                ans += k - j - 1;// k 天生多一个，如果没有多一个就说明没有有效的组合
             }
         }
         
