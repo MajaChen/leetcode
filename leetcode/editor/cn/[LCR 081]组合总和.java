@@ -62,30 +62,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-    List<List<Integer>> ans = new ArrayList<>();
-
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        traverse(candidates, new ArrayList<>(), target, 0);
-        return ans;
-    }
 
-    public void traverse(int[] candidates, List<Integer> selectedCandidates, int target, int index) {
-        for (int i = index; i < candidates.length; i++) {
-            if (candidates[i] > target) {
-                return;
-            }
-            if (candidates[i] == target) {
-                List<Integer> newCandidates = new ArrayList<>(selectedCandidates);
-                newCandidates.add(candidates[i]);
-                ans.add(newCandidates);
-                return;
-            }
-
-            selectedCandidates.add(candidates[i]);
-            traverse(candidates, selectedCandidates, target - candidates[i], i);
-            selectedCandidates.remove(selectedCandidates.size()-1);
-        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

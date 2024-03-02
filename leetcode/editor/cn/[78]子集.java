@@ -33,24 +33,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<List<Integer>> ans = new ArrayList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        traverse(0, nums, new HashSet<>());
-        return ans;
-    }
 
-    private void traverse(int i, int[] nums, Set<Integer> current){
-        if (i > nums.length) {
-            return;
-        }
-
-        ans.add(new ArrayList<>(current));
-
-        for (int j = i; j < nums.length; j++) {
-            current.add(nums[j]);
-            traverse(j+1, nums, current);
-            current.remove(nums[j]);
-        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

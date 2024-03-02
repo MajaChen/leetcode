@@ -39,7 +39,7 @@
 // -1000 <= targetSum <= 1000 
 // 
 //
-// Related Topics 树 深度优先搜索 回溯 二叉树 👍 1066 👎 0
+// Related Topics 树 深度优先搜索 回溯 二叉树 👍 1069 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -59,31 +59,8 @@
  * }
  */
 class Solution {
-
-    List<List<Integer>> ans = new ArrayList<>();
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        traverse(root, targetSum, new ArrayList<Integer>());
-        return ans;
-    }
 
-    private void traverse(TreeNode root, int targetSum, List<Integer> partAns) {
-        if (root == null || targetSum < root.val) {
-            return;
-        }
-
-        if (targetSum == root.val) {
-            if (root.left == null && root.right == null) {
-                partAns.add(root.val);
-                ans.add(new ArrayList<>(partAns));
-                partAns.remove(partAns.size()-1);
-            }
-            return;
-        }
-
-        partAns.add(root.val);
-        traverse(root.left, targetSum - root.val, partAns);
-        traverse(root.right, targetSum - root.val, partAns);
-        partAns.remove(partAns.size()-1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

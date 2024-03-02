@@ -42,13 +42,38 @@
 // -10⁴ <= target <= 10⁴ 
 // 
 //
-// Related Topics 数组 二分查找 👍 2801 👎 0
+// Related Topics 数组 二分查找 👍 2806 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int search(int[] nums, int target) {
-
+        int l = 0;
+        int r = nums.length - 1;
+        while(l <= r) {
+            int m = (l+r) >> 1;
+            if (nums[m] == target) {
+                return m;
+            }
+            if (nums[l] < nums[m]) {
+                // 左侧有序，右侧无序
+                if (target >= nums[l] && target < nums[m]) {
+                    r = m - 1;
+                } else {
+                    l = m+1;
+                }
+            } else {
+                // 右侧有序，左侧无序
+                if (target > nums[m] && target <= nums[r]) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
+            }
+        }
+        
+        return -1;
     }
+    
 }
 //leetcode submit region end(Prohibit modification and deletion)

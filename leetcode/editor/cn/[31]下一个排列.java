@@ -49,13 +49,38 @@
 // 0 <= nums[i] <= 100 
 // 
 //
-// Related Topics 数组 双指针 👍 2375 👎 0
+// Related Topics 数组 双指针 👍 2376 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+    
+    private void reverse(int[]nums, int i, int j) {
+        int l = i;
+        int r = j;
+        while(l <= r) {
+            swap(nums, l, r);
+            l++;
+            r--;
+        }
+    }
+    
     public void nextPermutation(int[] nums) {
-
+        int i = nums.length - 2;
+        int j = nums.length - 1;
+        while(i >= 0 && nums[i] > nums[i+1]) i--;// 确定可以交换的位置
+        if (i >= 0) {
+            while(nums[i] > nums[j]) j--;// 确定最终的交换人选
+        }
+        swap(nums, i, j);
+        
+        reverse(nums, i+1, nums.length -1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
